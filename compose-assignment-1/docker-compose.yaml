@@ -1,0 +1,26 @@
+version: '2'  # if no version is specified then v1 is assumed. Recommend v2 minimum
+
+services:  # containers. same as docker run
+  drupal: # a friendly name. this is also DNS name inside network
+    image: drupal:8.8.2 #Optional if you use build:
+    ports:
+      - "8080:80"
+    volumes: # Optional, same as -v in docker run
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-themes:/var/www/html/themes
+      # this takes advantage of the feature in Docker that a new anonymous
+      # volume (which is what we're creating here) will be initialized with the
+      # existing content of the image at the same location
+      - drupal-sites:/var/www/html/sites
+
+  postgres: # a friendly name. this is also DNS name inside network
+    image: postgres:12.1 # Optional if you use build:
+    environment: # Optional, same as -e in docker run
+      - POSTGRES_PASSWORD=mypasswrd
+
+volumes: # Optional, same as docker volume create
+  drupal-modules:
+  drupal-profiles:
+  drupal-themes:
+  drupal-sites:
