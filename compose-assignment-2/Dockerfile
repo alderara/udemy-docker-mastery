@@ -1,5 +1,5 @@
 # create your custom drupal image here, based of official drupal
-FROM drupal:8.8.2
+FROM drupal:latest
 
 RUN apt-get update \
     && apt-get install -y git \

@@ -17,7 +17,7 @@ services:  # containers. same as docker run
       - drupal-sites:/var/www/html/sites
 
   postgres: # a friendly name. this is also DNS name inside network
-    image: postgres:12.1 # Optional if you use build:
+    image: postgres:latest # Optional if you use build:
     environment: # Optional, same as -e in docker run
       - POSTGRES_PASSWORD=mypasswrd
     volumes:
